@@ -1,11 +1,13 @@
 import { 
+  Button,
   Checkbox,
   Divider,
   Table,
   TableBody,
-  TableHead,
   TableCell,
-  TableRow
+  TableHead,
+  TableRow,
+  TextField
 } from "@material-ui/core";
 
 export const OwnTransactionSubMenu = () => (
@@ -14,41 +16,55 @@ export const OwnTransactionSubMenu = () => (
       <TableHead>
         <TableRow>
           <TableCell>Navn</TableCell>
-          <TableCell numeric>Skylder</TableCell>
-          <TableCell>Betalt?</TableCell>
+          <TableCell>Å betale</TableCell>
         </TableRow>
       </TableHead>
       <TableBody>
         <TableRow>
           <TableCell>Tore</TableCell>
-          <TableCell numeric>200,00kr</TableCell>
-          <TableCell padding="checkbox">
-            <Checkbox
-              disabled
+          <TableCell>
+            <TextField
+              id="to-pay"
+              type="number"
+              value="0"
+              InputLabelProps={{
+                shrink: true,
+              }}
+              margin="normal"
             />
           </TableCell>
         </TableRow>
         <TableRow>
           <TableCell>John</TableCell>
-          <TableCell numeric>50,00kr</TableCell>
-          <TableCell padding="checkbox">
-            <Checkbox
-              disabled
-              checked
+          <TableCell>
+            <TextField
+              id="to-pay"
+              type="number"
+              value="0"
+              InputLabelProps={{
+                shrink: true,
+              }}
+              margin="normal"
             />
           </TableCell>
         </TableRow>
         <TableRow>
           <TableCell>Thomas</TableCell>
-          <TableCell numeric>50,00kr</TableCell>
-          <TableCell padding="checkbox">
-            <Checkbox
-              disabled
+          <TableCell>
+            <TextField
+              id="to-pay"
+              type="number"
+              value="0"
+              InputLabelProps={{
+                shrink: true,
+              }}
+              margin="normal"
             />
           </TableCell>
         </TableRow>
       </TableBody>
     </Table>
-    <Divider />
+    <br />
+    <Button variant="outlined" color="primary">Opprett gruppebetaling</Button>
   </>
 );

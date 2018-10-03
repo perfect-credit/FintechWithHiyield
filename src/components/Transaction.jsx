@@ -23,7 +23,7 @@ export class Transaction extends React.Component {
     super(props);
 
     this.state = {
-      expanded: false
+      expanded: true
     };
 
     this.expandToggle = this.expandToggle.bind(this);
@@ -63,7 +63,9 @@ export class Transaction extends React.Component {
                   <ExpandMoreIcon />
                 </IconButton>
               </> :
-              <Button color="primary">Opprett gruppebetaling</Button>
+              <Button onClick={this.expandToggle} aria-expanded={this.state.expanded} aria-label="Show create new group payment dialog" color={this.state.expanded ? "secondary" : "primary"}>
+                { this.state.expanded ? "Avbryt" : "Opprett gruppebetaling" }
+              </Button>
             }
         </CardActions>
         <Divider/>
