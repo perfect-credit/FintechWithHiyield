@@ -38,26 +38,26 @@ class NavbarContainer extends React.Component {
     render() {
         return (
             <>
-                <Drawer anchor="left" open={this.state.expanded} onClose={this.toggleDrawer}>
-                    <div className={this.props.classes.list}>
-                        <List>
-                            <ListItem button>
-                                <ListItemText primary="Home" />
-                            </ListItem>
-                        </List>
-                    </div>
-                </Drawer>
-                <AppBar position="static">
-                    <Toolbar>
-                        <IconButton className={this.props.classes.menuButton} color="inherit" aria-label="Menu" onClick={this.toggleDrawer}>
-                            <MenuIcon />
-                        </IconButton>
-                        <Typography variant="title" color="inherit" className={this.props.classes.grow}>
-                            Fintech Hackathon
-                        </Typography>
-                        <Button color="inherit">Login</Button>
-                    </Toolbar>
-                </AppBar>
+              <Drawer anchor="left" open={this.state.expanded} onClose={this.toggleDrawer}>
+                <div className={this.props.classes.list}>
+                  <List>
+                    <ListItem button>
+                      <ListItemText primary="Home" />
+                    </ListItem>
+                  </List>
+                </div>
+              </Drawer>
+              <AppBar position="static">
+                <Toolbar>
+                  <IconButton className={this.props.classes.menuButton} color="inherit" aria-label="Menu" onClick={this.toggleDrawer}>
+                    <MenuIcon />
+                  </IconButton>
+                  <Typography variant="title" color="inherit" className={this.props.classes.grow}>
+                    Fintech Hackathon
+                  </Typography>
+                  <Button color="inherit">Sign out</Button>
+                </Toolbar>
+              </AppBar>
             </>
         );
     }
