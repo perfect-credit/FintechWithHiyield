@@ -23,7 +23,7 @@ export class Transaction extends React.Component {
     super(props);
 
     this.state = {
-      expanded: true
+      expanded: false
     };
 
     this.expandToggle = this.expandToggle.bind(this);
