@@ -20,7 +20,7 @@ export const GroupTransactionSubMenu = () => (
     <TableBody>
       <TableRow>
         <TableCell>Tore</TableCell>
-        <TableCell numeric>200,00kr</TableCell>
+        <TableCell numeric>150,00kr</TableCell>
         <TableCell padding="checkbox">
           <Checkbox
             disabled
@@ -39,7 +39,7 @@ export const GroupTransactionSubMenu = () => (
       </TableRow>
       <TableRow>
         <TableCell>Thomas</TableCell>
-        <TableCell numeric>50,00kr</TableCell>
+        <TableCell numeric>100,00kr</TableCell>
         <TableCell padding="checkbox">
           <Checkbox
             disabled

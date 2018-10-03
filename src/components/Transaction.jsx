@@ -36,17 +36,47 @@ export class Transaction extends React.Component {
   }
 
   render() {
+    if (this.props.type == "manual") {
+      return (
+      <Card>
+        <CardActions onClick={this.expandToggle} disableActionSpacing className="transaction-actions">
+          <Button
+            aria-expanded={this.state.expanded}
+            aria-label="Show create new group payment dialog"
+            color={this.state.expanded ? "secondary" : "primary"}
+            style={{ margin: "auto" }}
+          >
+            { this.state.expanded ? "Avbryt" : "Opprett manuell gruppebetaling" }
+          </Button>
+        </CardActions>
+        <Divider/>
+        <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
+          <CardContent>
+            {this.props.children}
+          </CardContent>
+        </Collapse>
+      </Card>
+      );
+    }
+
     return (
       <Card>
         <CardContent>
           <div className="transaction">
             <div>
               <Typography variant="display1">Mat</Typography>
-              <Typography variant="subheading">02/10-2018</Typography>
+              <Typography variant="caption">02/10-2018</Typography>
             </div>
-            <div>
-              <Typography variant="display1">300,00kr</Typography>
-            </div>
+            {
+              this.props.type == "group" ?
+              <div className="group-money">
+                <Typography variant="display1">100,00kr</Typography>
+                <Typography variant="caption">Totalt 300,00kr</Typography>
+              </div> :
+              <div className="own-money">
+                <Typography variant="display1">300,00kr</Typography>
+              </div>
+            }
           </div>
         </CardContent>
         <CardActions disableActionSpacing className="transaction-actions">

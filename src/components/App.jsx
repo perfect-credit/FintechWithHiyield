@@ -11,8 +11,8 @@ export class App extends React.Component {
 
     // TODO: REMOVE THIS
     const groups = [
-        { name: "group 1" },
-        { name: "group 2" },
+        { name: "Group 1" },
+        { name: "Group 2" },
     ]
 
     this.state = {
