@@ -9,15 +9,9 @@ export class App extends React.Component {
   constructor(props) {
     super(props);
 
-    // TODO: REMOVE THIS
-    const groups = [
-        { name: "Group 1" },
-        { name: "Group 2" },
-    ]
-
     this.state = {
-      groups: groups,
-      activeGroup: groups[0],
+      groups: [],
+      activeGroup: undefined,
     }
 
     this.changeGroup = this.changeGroup.bind(this);
@@ -30,14 +24,18 @@ export class App extends React.Component {
     });
   }
 
+  componentDidMount() {
+    fetch("http://localhost:8080/group")
+      .then(res => res.json())
+      .then(groups => this.setState({ activeGroup: (groups[0] || undefined), groups }));
+  }
+
   render() {
     return (
-      <>
-        <groupCtx.Provider value={this.state.activeGroup}>
-          <Nav groups={this.state.groups} changeGroup={this.changeGroup} />
-          <Frontpage />
-        </groupCtx.Provider>
-      </>
+      <groupCtx.Provider value={this.state.activeGroup}>
+        <Nav groups={this.state.groups} changeGroup={this.changeGroup} />
+        <Frontpage />
+      </groupCtx.Provider>
     );
   }
 }

@@ -5,8 +5,10 @@ import { groupCtx } from "../contexts/group.jsx";
 import { withStyles } from '@material-ui/core/styles';
 
 import MenuIcon from '@material-ui/icons/Menu';
+import SettingsIcon from '@material-ui/icons/Settings';
+import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 
-import { List, ListItem, AppBar, Drawer, Toolbar, Typography, Button, IconButton, ListItemText } from "@material-ui/core";
+import { List, ListItem, AppBar, Drawer, Toolbar, Typography, ListItemIcon, Button, IconButton, ListItemText } from "@material-ui/core";
 
 const styles = {
     grow: {
@@ -51,13 +53,25 @@ class NavbarContainer extends React.Component {
         return (
             <>
               <Drawer anchor="left" open={this.state.expanded} onClose={this.toggleDrawer}>
-                <div className={this.props.classes.list}>
-                  <List>
-                    {this.props.groups.map((group) => (
-                      <ListItem button key={group.name}>
-                        <ListItemText primary={group.name} onClick={() => this.changeGroup(group.name)} />
-                      </ListItem>
-                    ))}
+                <div className={this.props.classes.list} style={{ height: "100%" }}>
+                  <List style={{ display: "flex", flexDirection: "column", height: "100%" }}>
+                    {
+                      this.props.groups.length === 0 ?
+                      <ListItem>
+                        <ListItemText primary="No groups available" />
+                      </ListItem> :
+                      this.props.groups.map((group) => (
+                        <ListItem button key={group.name}>
+                          <ListItemText primary={group.name} onClick={() => this.changeGroup(group.name)} />
+                        </ListItem>
+                      ))
+                    }
+                    <ListItem button style={{ marginTop: "auto" }}>
+                      <ListItemIcon>
+                        <AddCircleOutlineIcon />
+                      </ListItemIcon>
+                      <ListItemText primary="Add group" />
+                    </ListItem> 
                   </List>
                 </div>
               </Drawer>
@@ -68,10 +82,15 @@ class NavbarContainer extends React.Component {
                   </IconButton>
                   <Typography variant="title" color="inherit" className={this.props.classes.grow}>
                     <groupCtx.Consumer>
-                      {group => group.name}
+                      {group => group ? group.name : "No group selected" }
                     </groupCtx.Consumer>
                   </Typography>
-                  <Button color="inherit">Sign out</Button>
+                  <div>
+										<IconButton aria-label="Setting">
+											<SettingsIcon style={{ color: "white" }} />
+										</IconButton>
+                    <Button color="inherit">Sign out</Button>
+                  </div>
                 </Toolbar>
               </AppBar>
             </>
