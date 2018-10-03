@@ -3,9 +3,41 @@ import * as React from "react";
 import { Nav } from "./Nav";
 import { Frontpage } from "./Frontpage.jsx";
 
-export const App = () => (
-  <>
-    <Nav />
-    <Frontpage />
-  </>
-);
+import { groupCtx } from "../contexts/group.jsx";
+
+export class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    // TODO: REMOVE THIS
+    const groups = [
+        { name: "group 1" },
+        { name: "group 2" },
+    ]
+
+    this.state = {
+      groups: groups,
+      activeGroup: groups[0],
+    }
+
+    this.changeGroup = this.changeGroup.bind(this);
+  }
+
+  changeGroup(group) {
+    this.setState({
+      ...this.state,
+      activeGroup: this.state.groups.find(g => g.name == group),
+    });
+  }
+
+  render() {
+    return (
+      <>
+        <groupCtx.Provider value={this.state.activeGroup}>
+          <Nav groups={this.state.groups} changeGroup={this.changeGroup} />
+          <Frontpage />
+        </groupCtx.Provider>
+      </>
+    );
+  }
+}

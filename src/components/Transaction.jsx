@@ -37,7 +37,7 @@ export class Transaction extends React.Component {
 
   render() {
     return (
-      <Card style={{ height: "100%" }}>
+      <Card>
         <CardContent>
           <div className="transaction">
             <div>
