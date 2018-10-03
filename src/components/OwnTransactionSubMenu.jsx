@@ -12,6 +12,18 @@ import {
 
 export const OwnTransactionSubMenu = () => (
   <>
+    <TextField
+      id="to-pay"
+      label="Navn på gruppebetaling"
+      type="text"
+      placeholder="todo; name of trans"
+      InputLabelProps={{
+        shrink: true,
+      }}
+      margin="normal"
+      style={{width: "100%"}}
+    />
+    <Divider/>
     <Table className="users-table">
       <TableHead>
         <TableRow>
