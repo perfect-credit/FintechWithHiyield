@@ -3,9 +3,7 @@ import { Transaction } from "./Transaction.jsx";
 import { GroupTransactionSubMenu } from "./GroupTransactionSubMenu.jsx";
 
 export const GroupTransactions = () => ( 
-  <div>
-    <Transaction>
-      <GroupTransactionSubMenu />
-    </Transaction>
-  </div> 
+  <Transaction type="group">
+    <GroupTransactionSubMenu />
+  </Transaction>
 );

@@ -1,4 +1,5 @@
 import {
+  Button,
   Card,
   CardActions,
   CardContent,
@@ -36,7 +37,7 @@ export class Transaction extends React.Component {
 
   render() {
     return (
-      <Card>
+      <Card style={{ height: "100%" }}>
         <CardContent>
           <div className="transaction">
             <div>
@@ -49,15 +50,21 @@ export class Transaction extends React.Component {
           </div>
         </CardContent>
         <CardActions disableActionSpacing className="transaction-actions">
-          <IconButton aria-label="Accept">
-            <CheckIcon style={{color: Green[500]}} />
-          </IconButton>
-          <IconButton aria-label="Decline">
-            <CloseIcon  color="error" />
-          </IconButton>
-          <IconButton aria-label="Show more" onClick={this.expandToggle} aria-expanded={this.state.expanded} className={this.state.expanded ? "button-expanded" : ""}>
-            <ExpandMoreIcon />
-          </IconButton>
+          {
+            this.props.type == "group" ? 
+              <>
+                <IconButton aria-label="Accept">
+                  <CheckIcon style={{color: Green[500]}} />
+                </IconButton>
+                <IconButton aria-label="Decline">
+                  <CloseIcon  color="error" />
+                </IconButton>
+                <IconButton aria-label="Show more" onClick={this.expandToggle} aria-expanded={this.state.expanded} className={this.state.expanded ? "button-expanded" : ""}>
+                  <ExpandMoreIcon />
+                </IconButton>
+              </> :
+              <Button color="primary">Opprett gruppebetaling</Button>
+            }
         </CardActions>
         <Divider/>
         <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>

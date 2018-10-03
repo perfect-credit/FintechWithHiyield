@@ -1,8 +1,15 @@
 .frontpage {
   display: flex;
   padding: 1rem;
+  width: 70%;
+  margin: auto;
+  margin-top: 1rem;
 
   &>* {
-    width: 50%;
+    width: calc(50% - 1rem);
+
+    &:not(:last-child) {
+      margin-right: 2rem;
+    }
   }
 }

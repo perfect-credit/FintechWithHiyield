@@ -8,7 +8,7 @@ import {
   TableRow
 } from "@material-ui/core";
 
-export const GroupTransactionSubMenu = () => (
+export const OwnTransactionSubMenu = () => (
   <>
     <Table className="users-table">
       <TableHead>
