@@ -1,7 +1,5 @@
 import * as React from "react";
 
-import { groupCtx } from "../contexts/group.jsx";
-
 import { withStyles } from '@material-ui/core/styles';
 
 import MenuIcon from '@material-ui/icons/Menu';
@@ -58,7 +56,7 @@ class NavbarContainer extends React.Component {
                     {
                       this.props.groups.length === 0 ?
                       <ListItem>
-                        <ListItemText primary="No groups available" />
+                        <ListItemText primary="Ingen grupper tilgjengelige" />
                       </ListItem> :
                       this.props.groups.map((group) => (
                         <ListItem button key={group.name}>
@@ -80,11 +78,7 @@ class NavbarContainer extends React.Component {
                   <IconButton className={this.props.classes.menuButton} color="inherit" aria-label="Menu" onClick={this.toggleDrawer}>
                     <MenuIcon />
                   </IconButton>
-                  <Typography variant="title" color="inherit" className={this.props.classes.grow}>
-                    <groupCtx.Consumer>
-                      {group => group ? group.name : "No group selected" }
-                    </groupCtx.Consumer>
-                  </Typography>
+                  <Typography variant="title" color="inherit" className={this.props.classes.grow}>Kollect</Typography>
                   <div>
 										<IconButton aria-label="Setting">
 											<SettingsIcon style={{ color: "white" }} />

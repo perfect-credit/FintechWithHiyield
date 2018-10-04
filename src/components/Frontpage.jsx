@@ -1,9 +1,11 @@
 import * as React from "react";
 
-import { Typography } from "@material-ui/core";
+import { Typography, Paper } from "@material-ui/core";
 
 import { GroupTransactions } from "./GroupTransactions.jsx"
 import { OwnTransactions } from "./OwnTransactions.jsx";
+
+import { groupCtx } from "../contexts/group.jsx";
 
 import "../stylesheets/frontpage.scss";
 
@@ -12,20 +14,17 @@ export class Frontpage extends React.Component {
     return (
       <div className="frontpage">
         <div>
-          <Typography variant="display1">
-            Gruppebetalinger
+          <Typography variant="title" color="inherit">
+            <groupCtx.Consumer>
+              {group => group ? group.name : "Ingen gruppe valgt" }
+            </groupCtx.Consumer>
           </Typography>
-          <br />
           <GroupTransactions />
         </div>
 
-        <div>
-          <Typography variant="display1">
-            Dine siste transaksjoner
-          </Typography>
-          <br />
+        <Paper square>
           <OwnTransactions />
-        </div>
+        </Paper>
       </div>
     );
   }

@@ -1,15 +1,19 @@
 .frontpage {
   display: flex;
-  padding: 1rem;
-  width: 70%;
   margin: auto;
-  margin-top: 1rem;
+  height: 100%;
+  width: 100%;
 
-  &>* {
-    width: calc(50% - 1rem);
+  &>div:first-child {
+    width: 65%;
+  }
 
-    &:not(:last-child) {
-      margin-right: 2rem;
-    }
+  &>div:last-child {
+    width: 35%;
+    height: 100%;
+  }
+
+  &>div {
+    padding: 1rem;
   }
 }

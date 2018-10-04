@@ -1,4 +1,13 @@
-/**
- * Use this file to import other stylesheets on the form
- * @import "./name-of-stylesheet.scss
- */
+body {
+  min-height: 100vh;
+}
+
+#root {
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+
+  header {
+    flex-grow: 0;
+  }
+}
