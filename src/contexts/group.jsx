@@ -1,3 +1,3 @@
 import { createContext } from "react";
 
-export const groupCtx = createContext({});
+export const groupCtx = createContext(undefined);

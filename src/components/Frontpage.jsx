@@ -15,12 +15,11 @@ export class Frontpage extends React.Component {
     return (
       <div className="frontpage">
         <div>
-          <Typography variant="title" color="inherit">
-            <groupCtx.Consumer>
-              {group => group ? group.name : "Ingen gruppe valgt" }
-            </groupCtx.Consumer>
-          </Typography>
-          <GroupTransactions />
+          <groupCtx.Consumer>
+            {group =>
+              <GroupTransactions group={group} />
+            }
+          </groupCtx.Consumer>
         </div>
 
         <Paper square>

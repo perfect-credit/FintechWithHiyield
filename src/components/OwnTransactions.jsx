@@ -29,7 +29,7 @@ export class OwnTransactions extends React.Component {
         <br/>
 
         {this.state.transactions.map((t) => (
-          <Transaction key={t.id} type="own" name={t.creditorName} date={t.transactionDate} amount={t.localAmount.amount} currencyCode={t.localAmount.currencyCode}>
+          <Transaction key={t.id} type="own" transaction={t}>
             <OwnTransactionSubMenu amount={t.localAmount.amount} />
           </Transaction>
         ))}

@@ -80,7 +80,7 @@ export const OwnTransactionSubMenu = ({ amount }) => (
                   </TableBody>
                 </Table>
                 <br />
-                <Button variant="outlined" color="primary">Opprett gruppebetaling</Button>
+                <Button color="primary" variant="flat">Opprett gruppebetaling</Button>
               </>
             )
           }

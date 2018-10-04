@@ -38,7 +38,7 @@ export class Transaction extends React.Component {
   render() {
     if (this.props.type == "manual") {
       return (
-      <Card>
+      <Card style={{ border: "3px solid #e3f2fd" }}>
         <CardActions onClick={this.expandToggle} disableActionSpacing className="transaction-actions">
           <Button
             aria-expanded={this.state.expanded}
@@ -60,36 +60,44 @@ export class Transaction extends React.Component {
     }
 
     return (
-      <Card className="transaction-elem">
-        <CardContent>
+      <Card className="transaction-elem" style={this.props.type == "own" ? { backgroundColor: "#e3f2fd", paddingTop: ".7em" } : (this.props.transaction.requestUserId == this.props.user.id ? { border: "2px solid rgb(227, 242, 253)" } : (this.props.transaction.resolved ? {} : { border: "2px solid #ffe0b2" }))}>
+        <CardContent style={{paddingBottom: "2em"}}>
           <div className="transaction">
             <div>
-              <Typography variant="display1">{this.props.name}</Typography>
-              <Typography variant="caption">{this.props.date}</Typography>
+              <Typography variant="display1">{this.props.type == "own" ? this.props.transaction.creditorName : this.props.transaction.name}</Typography>
+              <Typography variant="caption">{this.props.type == "own" ? this.props.transaction.transactionDate : (`Opprettet ${this.props.transaction.date} av ${this.props.group.users.find(u => u.id == this.props.transaction.requestUserId).name}`)}</Typography>
             </div>
             {
               this.props.type == "group" ?
               <div className="group-money">
-                <Typography variant="display1">100,00kr</Typography>
-                <Typography variant="caption">Totalt 300,00kr</Typography>
+                <div className="own-money">
+                  <Typography variant="subheading" style={{ color: "#bbb" }}>NOK&nbsp;</Typography>
+                  <Typography variant="display1">{this.props.transaction.amount.toFixed(2)}</Typography>
+                </div>
+                <Typography variant="caption">Totalt xx,xxkr</Typography>
               </div> :
               <div className="own-money">
-                <Typography variant="subheading" style={{ color: "#bbb" }}>{this.props.currencyCode}&nbsp;</Typography>
-                <Typography variant="display1">{this.props.amount.toFixed(2)}</Typography>
+                <Typography variant="subheading" style={{ color: "#bbb" }}>{this.props.transaction.localAmount.currencyCode}&nbsp;</Typography>
+                <Typography variant="display1">{this.props.transaction.localAmount.amount.toFixed(2)}</Typography>
               </div>
             }
           </div>
         </CardContent>
+        <Divider/>
         <CardActions disableActionSpacing className="transaction-actions">
           {
             this.props.type == "group" ? 
               <>
-                <IconButton aria-label="Accept">
-                  <CheckIcon style={{color: Green[500]}} />
-                </IconButton>
-                <IconButton aria-label="Decline">
-                  <CloseIcon  color="error" />
-                </IconButton>
+                { this.props.user.id == this.props.transaction.requestUserId || this.props.transaction.resolved ? "" :
+                  <>
+                    <IconButton aria-label="Accept">
+                      <CheckIcon style={{color: Green[500]}} />
+                    </IconButton>
+                    <IconButton aria-label="Decline">
+                      <CloseIcon  color="error" />
+                    </IconButton>
+                  </>
+                }
                 <IconButton aria-label="Show more" onClick={this.expandToggle} aria-expanded={this.state.expanded} className={this.state.expanded ? "button-expanded" : ""}>
                   <ExpandMoreIcon />
                 </IconButton>
@@ -100,7 +108,7 @@ export class Transaction extends React.Component {
             }
         </CardActions>
         <Divider/>
-        <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
+        <Collapse in={this.state.expanded} timeout="auto" unmountOnExit style={this.props.type == "own" ? { backgroundColor: "#FBFFFF" } : {}}>
           <CardContent>
             {this.props.children}
           </CardContent>
