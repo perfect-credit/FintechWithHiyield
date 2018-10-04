@@ -18,6 +18,8 @@ export class GroupTransactions extends React.Component {
     this.state = {
       transactions: [],
     }
+
+    this.popElem = this.popElem.bind(this);
   }
 
   componentDidUpdate(prevProps) {
@@ -25,6 +27,12 @@ export class GroupTransactions extends React.Component {
     fetch(`http://localhost:8080/paymentrequest/${this.props.group.id}`)
       .then(res => res.json())
       .then(transactions => this.setState({ transactions }));
+  }
+
+  popElem(id) {
+    this.setState({
+      transactions: this.state.transactions.filter(x => x.id != id)
+    });
   }
   
   render() {
@@ -41,7 +49,7 @@ export class GroupTransactions extends React.Component {
                 <br/>
                 {
                   this.state.transactions.reverse().map((t) => (
-                    <Transaction type="group" key={t.id} transaction={t} group={group} user={user}>
+                    <Transaction type="group" key={t.id} transaction={t} popElem={this.popElem} group={group} user={user}>
                       <GroupTransactionSubMenu transaction={t} group={group} />
                     </Transaction>
                   ))

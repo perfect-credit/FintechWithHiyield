@@ -90,7 +90,7 @@ export class Transaction extends React.Component {
               <>
                 { this.props.user.id == this.props.transaction.requestUserId || this.props.transaction.resolved ? "" :
                   <>
-                    <IconButton aria-label="Accept" onClick={this.removeMe}>
+                    <IconButton aria-label="Accept" onClick={() => this.props.popElem(this.props.transaction.id)}>
                       <CheckIcon style={{color: Green[500]}} />
                     </IconButton>
                     <IconButton aria-label="Decline">
