@@ -40,9 +40,9 @@ export class GroupTransactions extends React.Component {
                 <Divider />
                 <br/>
                 {
-                  this.state.transactions.map((t) => (
+                  this.state.transactions.reverse().map((t) => (
                     <Transaction type="group" key={t.id} transaction={t} group={group} user={user}>
-                      <GroupTransactionSubMenu />
+                      <GroupTransactionSubMenu transaction={t} group={group} />
                     </Transaction>
                   ))
                 }

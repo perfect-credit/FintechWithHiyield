@@ -23,7 +23,7 @@ export class Transaction extends React.Component {
     super(props);
 
     this.state = {
-      expanded: false
+      expanded: false,
     };
 
     this.expandToggle = this.expandToggle.bind(this);
@@ -38,7 +38,7 @@ export class Transaction extends React.Component {
   render() {
     if (this.props.type == "manual") {
       return (
-      <Card style={{ border: "3px solid #e3f2fd" }}>
+      <Card style={{ border: "3px solid #e3f2fd", transition: "height 0.5s" }}>
         <CardActions onClick={this.expandToggle} disableActionSpacing className="transaction-actions">
           <Button
             aria-expanded={this.state.expanded}
@@ -72,9 +72,9 @@ export class Transaction extends React.Component {
               <div className="group-money">
                 <div className="own-money">
                   <Typography variant="subheading" style={{ color: "#bbb" }}>NOK&nbsp;</Typography>
-                  <Typography variant="display1">{this.props.transaction.amount.toFixed(2)}</Typography>
+                  <Typography variant="display1">{(this.props.transaction.amount / this.props.group.users.length).toFixed(2)}</Typography>
                 </div>
-                <Typography variant="caption">Totalt xx,xxkr</Typography>
+                <Typography variant="caption">NOK {this.props.transaction.amount.toFixed(2)}</Typography>
               </div> :
               <div className="own-money">
                 <Typography variant="subheading" style={{ color: "#bbb" }}>{this.props.transaction.localAmount.currencyCode}&nbsp;</Typography>
@@ -90,7 +90,7 @@ export class Transaction extends React.Component {
               <>
                 { this.props.user.id == this.props.transaction.requestUserId || this.props.transaction.resolved ? "" :
                   <>
-                    <IconButton aria-label="Accept">
+                    <IconButton aria-label="Accept" onClick={this.removeMe}>
                       <CheckIcon style={{color: Green[500]}} />
                     </IconButton>
                     <IconButton aria-label="Decline">

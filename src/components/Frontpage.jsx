@@ -15,17 +15,25 @@ export class Frontpage extends React.Component {
     return (
       <div className="frontpage">
         <div>
-          <groupCtx.Consumer>
-            {group =>
-              <GroupTransactions group={group} />
+          <userCtx.Consumer>
+            {user =>
+              <groupCtx.Consumer>
+                {group =>
+                  <GroupTransactions group={group} user={user} />
+                }
+              </groupCtx.Consumer>
             }
-          </groupCtx.Consumer>
+          </userCtx.Consumer>
         </div>
 
         <Paper square>
-          <userCtx.Consumer>
-            {user => <OwnTransactions user={user}/>}
-          </userCtx.Consumer>
+          <groupCtx.Consumer>
+            {group =>
+              <userCtx.Consumer>
+                {user => <OwnTransactions user={user} group={group} />}
+              </userCtx.Consumer>
+            }
+          </groupCtx.Consumer>
         </Paper>
       </div>
     );
