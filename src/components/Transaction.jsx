@@ -65,7 +65,7 @@ export class Transaction extends React.Component {
           <div className="transaction">
             <div>
               <Typography variant="display1">{this.props.type == "own" ? this.props.transaction.creditorName : this.props.transaction.name}</Typography>
-              <Typography variant="caption">{this.props.type == "own" ? this.props.transaction.transactionDate : (`Opprettet ${this.props.transaction.date} av ${this.props.group.users.find(u => u.id == this.props.transaction.requestUserId).name}`)}</Typography>
+              <Typography variant="caption">{this.props.type == "own" ? this.props.transaction.transactionDate : (`Opprettet ${this.props.transaction.date} av ${(this.props.group.users.find(u => u.id == this.props.transaction.requestUserId) || {name: ''}).name}`)}</Typography>
             </div>
             {
               this.props.type == "group" ?

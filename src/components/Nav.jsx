@@ -19,7 +19,8 @@ const styles = {
         marginRight: 20,
     },
     list: {
-        width: 250,
+        width: 350,
+        overflowX: "hidden"
     },
     fullList: {
         width: 'auto',
