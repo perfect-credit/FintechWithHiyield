@@ -60,12 +60,12 @@ export class Transaction extends React.Component {
     }
 
     return (
-      <Card>
+      <Card className="transaction-elem">
         <CardContent>
           <div className="transaction">
             <div>
-              <Typography variant="display1">Mat</Typography>
-              <Typography variant="caption">02/10-2018</Typography>
+              <Typography variant="display1">{this.props.name}</Typography>
+              <Typography variant="caption">{this.props.date}</Typography>
             </div>
             {
               this.props.type == "group" ?
@@ -74,7 +74,8 @@ export class Transaction extends React.Component {
                 <Typography variant="caption">Totalt 300,00kr</Typography>
               </div> :
               <div className="own-money">
-                <Typography variant="display1">300,00kr</Typography>
+                <Typography variant="subheading" style={{ color: "#bbb" }}>{this.props.currencyCode}&nbsp;</Typography>
+                <Typography variant="display1">{this.props.amount.toFixed(2)}</Typography>
               </div>
             }
           </div>

@@ -6,7 +6,9 @@ import MenuIcon from '@material-ui/icons/Menu';
 import SettingsIcon from '@material-ui/icons/Settings';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 
-import { List, ListItem, AppBar, Drawer, Toolbar, Typography, ListItemIcon, Button, IconButton, ListItemText } from "@material-ui/core";
+import "../stylesheets/navbar.scss";
+
+import { Divider, List, ListItem, AppBar, Drawer, Toolbar, Typography, ListItemIcon, Button, IconButton, ListItemText } from "@material-ui/core";
 
 const styles = {
     grow: {
@@ -59,9 +61,13 @@ class NavbarContainer extends React.Component {
                         <ListItemText primary="Ingen grupper tilgjengelige" />
                       </ListItem> :
                       this.props.groups.map((group) => (
-                        <ListItem button key={group.name}>
-                          <ListItemText primary={group.name} onClick={() => this.changeGroup(group.name)} />
-                        </ListItem>
+                        <div key={group.id} onClick={() => this.changeGroup(group.name)}>
+                          <ListItem button>
+                            <ListItemText primary={group.name} />
+                          </ListItem>
+                          {group.users.map(u => <ListItem key={u.id} className="nav-name"><ListItemText primary={u.name} /></ListItem>)}
+                          <Divider />
+                        </div>
                       ))
                     }
                     <ListItem button style={{ marginTop: "auto" }}>

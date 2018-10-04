@@ -30,3 +30,7 @@
 .transaction-actions .button-expanded {
   transform: rotate(180deg);
 }
+
+.transaction-elem:not(:last-child) {
+  margin-bottom: 1rem;
+}

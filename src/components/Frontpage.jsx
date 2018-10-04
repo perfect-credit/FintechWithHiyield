@@ -6,6 +6,7 @@ import { GroupTransactions } from "./GroupTransactions.jsx"
 import { OwnTransactions } from "./OwnTransactions.jsx";
 
 import { groupCtx } from "../contexts/group.jsx";
+import { userCtx } from "../contexts/user.jsx";
 
 import "../stylesheets/frontpage.scss";
 
@@ -23,7 +24,9 @@ export class Frontpage extends React.Component {
         </div>
 
         <Paper square>
-          <OwnTransactions />
+          <userCtx.Consumer>
+            {user => <OwnTransactions user={user}/>}
+          </userCtx.Consumer>
         </Paper>
       </div>
     );
